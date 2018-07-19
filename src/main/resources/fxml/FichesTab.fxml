@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXNodesList?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="rootStackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.patres.languagepopup.gui.controller.FichesController">
+    <BorderPane>
+        <center>
+         <StackPane fx:id="ficheStackPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        </center>
+      <top>
+         <GridPane hgap="10.0" BorderPane.alignment="CENTER">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
+             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <Label styleClass="fiche-label" text="%fiches.title" />
+               <Label fx:id="searchSize" styleClass="fiche-label" text="(value)" GridPane.columnIndex="1" />
+               <JFXTextField fx:id="searchTextField" promptText="%search" styleClass="fiche-label" GridPane.columnIndex="2" />
+            </children>
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </GridPane>
+      </top>
+    </BorderPane>
+    <JFXNodesList fx:id="nodesList" rotate="180.0" spacing="15" StackPane.alignment="BOTTOM_RIGHT">
+        <children>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" styleClass="main-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="CARET_UP" size="24" styleClass="main-icon" />
+                </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#reload" styleClass="animated-option-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="REFRESH" size="24" styleClass="sub-icon" />
+                </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#save" styleClass="animated-option-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="SAVE" size="24" styleClass="sub-icon" />
+                </graphic>
+            </JFXButton>
+         <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#addNewFiche" styleClass="animated-option-button">
+            <graphic>
+               <FontAwesomeIconView glyphName="PLUS" size="24" styleClass="sub-icon" />
+            </graphic>
+         </JFXButton>
+            <JFXButton fx:id="removeButton" contentDisplay="GRAPHIC_ONLY" onAction="#removeFiche" styleClass="animated-option-button">
+                <graphic>
+                    <FontAwesomeIconView fx:id="minusButton" glyphName="MINUS" size="24" styleClass="sub-icon" />
+                </graphic>
+            </JFXButton>
+        </children>
+        <StackPane.margin>
+            <Insets bottom="50.0" right="50.0" />
+        </StackPane.margin>
+    </JFXNodesList>
+
+</StackPane>
