@@ -1,6 +1,7 @@
 package com.patres.languagepopup.database
 
 import com.patres.languagepopup.model.Settings
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -42,7 +43,9 @@ object SettingsTextDatabaseConnector {
 
     private fun getFile(): File {
         val path = File(SettingsTextDatabaseConnector::class.java.protectionDomain.codeSource.location.toURI()).path
-        return File(path, PROPERTIES_FILE)
+        val jarFile = File(path)
+        val jarDir = jarFile.parentFile.path
+        return File(jarDir, PROPERTIES_FILE)
     }
 
 }

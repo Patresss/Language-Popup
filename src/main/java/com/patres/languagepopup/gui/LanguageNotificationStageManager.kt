@@ -20,7 +20,6 @@ import javafx.scene.paint.Color
 import javafx.stage.Stage
 import javafx.stage.StageStyle
 import javafx.util.Duration
-import org.controlsfx.control.NotificationPane
 import java.awt.Point
 
 
@@ -32,18 +31,26 @@ class LanguageNotificationStageManager {
     private val fiche = generateFiche()
 
     init {
-        setupStage()
-        stage.show()
-        makeDraggable(stage, layout)
-        NotificationPane()
+        if (fiche != null) {
+            setupStage()
+            stage.show()
+            makeDraggable(stage, layout)
+        }
     }
 
-    private fun generateFiche(): Fiche {
-        return RandomGenerator(fiches).generateRandomFiche()
+    fun stageIsShowing() = stage.isShowing
+
+    private fun generateFiche(): Fiche? {
+        return if (fiches.isNotEmpty()) {
+            RandomGenerator(fiches).generateRandomFiche()
+        } else {
+            null
+        }
+
     }
 
     fun saveFicheLevel(level: String) {
-        fiche.levelOfEducationProperty.set(level)
+        fiche?.levelOfEducationProperty?.set(level)
         FicheTextDatabaseConnector.saveFiches(fiches)
         stage.close()
     }
@@ -70,7 +77,7 @@ class LanguageNotificationStageManager {
         loader.location = LanguageNotificationStageManager::class.java.getResource("/fxml/LanguageNotification.fxml")
         val content = loader.load<Any>() as Parent
         val controller = loader.getController<LanguageNotification>()
-        controller.loadFiche(fiche)
+        fiche?.let { controller.loadFiche(fiche) }
         controller.languageNotificationHandler = this
         return content
     }

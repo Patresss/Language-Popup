@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXSlider
 import com.jfoenix.controls.JFXTextField
 import com.patres.languagepopup.Main
 import com.patres.languagepopup.model.Settings
+import com.patres.languagepopup.util.setIntegerFilter
 import javafx.fxml.FXML
 import java.awt.Point
 
@@ -29,18 +30,10 @@ class SettingsController {
 
     fun initialize() {
         reload()
-        initIntegerTextFiels(minutesTextField)
-        initIntegerTextFiels(positionXTextField)
-        initIntegerTextFiels(positionYTextField)
-        initIntegerTextFiels(fontSizeTextField)
-    }
-
-    fun initIntegerTextFiels(textField: JFXTextField) {
-        textField.textProperty().addListener { _, _, newValue ->
-            if (!newValue.matches(Regex("\\d*"))) {
-                textField.text = newValue.replace(Regex("[^\\d]"), "")
-            }
-        }
+        minutesTextField.setIntegerFilter()
+        positionXTextField.setIntegerFilter()
+        positionYTextField.setIntegerFilter()
+        fontSizeTextField.setIntegerFilter()
     }
 
     @FXML

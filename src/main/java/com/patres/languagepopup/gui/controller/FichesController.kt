@@ -7,6 +7,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject
 import com.patres.languagepopup.Main
 import com.patres.languagepopup.database.FicheTextDatabaseConnector
 import com.patres.languagepopup.model.Fiche
+import com.patres.languagepopup.util.setIntegerFilter
 import javafx.beans.binding.Bindings
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
@@ -22,7 +23,7 @@ import java.util.concurrent.Callable
 class FichesController {
 
     companion object {
-        val DEFAULT_PREF_SIZE = 150.0
+        const val DEFAULT_PREF_SIZE = 150.0
     }
 
     @FXML
@@ -36,9 +37,6 @@ class FichesController {
 
     @FXML
     private lateinit var removeButton: JFXButton
-
-    @FXML
-    private lateinit var nodesList: JFXNodesList
 
     private lateinit var fichesTable: JFXTreeTableView<Fiche>
 
@@ -65,7 +63,7 @@ class FichesController {
         val fiche = Fiche(
                 englishText = Main.bundle.getString("fiche.englishText.placeholder"),
                 polishText = Main.bundle.getString("fiche.polishText.placeholder"),
-                levelOfEducation = Main.bundle.getString("fiche.levelOfEducation.placeholder")
+                levelOfEducation = 3.toString()
         )
         val ficheTreeElement = TreeItem(fiche)
         fichesTable.root.children.add(ficheTreeElement)
@@ -174,9 +172,9 @@ class FichesController {
         }
         levelOfEducationColumn.setCellFactory { GenericEditableTreeTableCell<Fiche, String>(TextFieldEditorBuilder()) }
         levelOfEducationColumn.setOnEditCommit { treeTableColumn ->
+            println(treeTableColumn.newValue)
             treeTableColumn.treeTableView.getTreeItem(treeTableColumn.treeTablePosition.row).value.levelOfEducationProperty.set(treeTableColumn.newValue)
         }
     }
-
 
 }

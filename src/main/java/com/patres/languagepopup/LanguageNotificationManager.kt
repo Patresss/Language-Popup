@@ -8,6 +8,7 @@ class LanguageNotificationManager {
 
     private fun getMillis() = 1000 * 60 * Settings.minutestWaitPopup.toLong()
     private var thread: Thread? = null
+    private var languageNotificationStageManager: LanguageNotificationStageManager? = null
 
     init {
         loadTask()
@@ -20,7 +21,9 @@ class LanguageNotificationManager {
                 while (true) {
                     Thread.sleep(getMillis())
                     Platform.runLater {
-                        LanguageNotificationStageManager()
+                        if (languageNotificationStageManager == null || languageNotificationStageManager?.stageIsShowing() == false) {
+                            languageNotificationStageManager = LanguageNotificationStageManager()
+                        }
                     }
                 }
             } catch (e: InterruptedException) {
