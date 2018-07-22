@@ -65,4 +65,14 @@ object Settings {
         return properties
     }
 
+
+    fun createDefaultSettings(): Properties {
+        val properties = Properties()
+        properties[KEY_MINUTES_WAIT_POPUP] = DEFAULT_MINUTES_WAIT_POPUP.toString()
+        properties[KEY_POPUP_POSITION_X] = DEFAULT_POPUP_POSITION_X.toString()
+        properties[KEY_POPUP_POSITION_Y] = DEFAULT_POPUP_POSITION_Y.toString()
+        properties[KEY_POPUP_FONT_SIZE] = DEFAULT_POPUP_FONT_SIZE.toString()
+        properties[KEY_OPACITY_BACKGROUND] = DEFAULT_OPACITY_BACKGROUND.toString()
+        return properties
+    }
 }

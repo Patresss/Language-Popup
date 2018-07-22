@@ -13,7 +13,7 @@ class LanguageNotificationManager {
         loadTask()
     }
 
-    fun loadTask() {
+    private fun loadTask() {
         thread?.interrupt()
         thread = Thread(Runnable {
             try {

@@ -1,5 +1,6 @@
 package com.patres.languagepopup.database
 
+import com.patres.languagepopup.model.Settings
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -22,10 +23,21 @@ object SettingsTextDatabaseConnector {
     fun loadSettings(): Properties {
         val properties = Properties()
         val file = getFile()
+        createSettingsIfNotExists(file)
         val inputStream = FileInputStream(file)
         properties.load(inputStream)
         inputStream.close()
         return properties
+    }
+
+    private fun createSettingsIfNotExists(file: File) {
+        if (!file.exists()) {
+            val defaultSettings = Settings.createDefaultSettings()
+            file.createNewFile()
+            val fileOutputStream = FileOutputStream(file)
+            defaultSettings.store(fileOutputStream, "Language Popup Settings")
+            fileOutputStream.close()
+        }
     }
 
     private fun getFile(): File {
