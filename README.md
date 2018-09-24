@@ -12,7 +12,7 @@ Program do nauki języka obcego.
 ## Zrzuty ekranu:
 
 ### Przykład ekranu z popup
-![](https://github.com/Patresss/Language-Popup/blob/master/ScreenShots/Example.PNG)
+![](https://github.com/Patresss/Language-Popup/blob/master/ScreenShots/ExampleScreen.png)
 
 ### Popup
 ![](https://github.com/Patresss/Language-Popup/blob/master/ScreenShots/popup.png)
